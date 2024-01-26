@@ -1,0 +1,38 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define ll long long
+#include <string.h>
+#include <unordered_map>
+int main()
+{
+    string n;
+    cin >> n;
+    ll max_num = 0;
+    char max_char;
+    ll count = 1;
+    for (int i = 1; i < n.size(); i++)
+    {
+        if (n[i] == n[i - 1])
+        {
+            count++;
+            if (count > max_num)
+            {
+                max_num = count;
+                max_char = n[i];
+            }
+        }
+        else
+        {
+            count = 1;
+        }
+    }
+    if (max_num == 0)
+    {
+        cout << 1;
+    }
+    else
+    {
+        cout << max_num;
+    }
+}
