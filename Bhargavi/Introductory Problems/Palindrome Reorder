@@ -1,0 +1,46 @@
+// Palindrome Reorder
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define ll long long
+#include <string.h>
+#include <unordered_map>
+#include <vector>
+int main()
+{
+    string n;
+    cin >> n;
+    unordered_map<char, int> char_count;
+    vector<char> ans{};
+    string t = "";
+    // map is ordered by default
+    for (char i : n)
+    {
+        char_count[i]++;
+        if (char_count[i] == 2)
+        {
+            t += i;
+            char_count.erase(i);
+        }
+    }
+    if (char_count.size() > 1)
+    {
+        cout << "NO SOLUTION";
+    }
+    else
+    {
+        for (char i : t)
+        {
+            cout << i;
+        }
+        for (auto j : char_count)
+        {
+            cout << j.first;
+        }
+        reverse(t.begin(), t.end());
+        for (char i : t)
+        {
+            cout << i;
+        }
+    }
+}
