@@ -1,0 +1,44 @@
+// removing digits
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define ll long long
+#include <vector>
+int main()
+{
+    ll n;
+    cin >> n;
+    vector<ll> dp(n + 1);
+    dp[0] = 0;
+    if (n < 10)
+    {
+        cout << 1;
+        return 0;
+    }
+    for (ll i = 1; i < 10; i++)
+    {
+        dp[i] = 1;
+    }
+    for (ll i = 10; i <= n; i++)
+    {
+        ll a = i;
+        while (a > 0)
+        {
+            ll n = a % 10;
+            if (n > 0)
+            {
+                if (!dp[i])
+                {
+                    dp[i] = 1 + dp[i - n];
+                }
+                else
+                {
+                    dp[i] = min(dp[i], 1 + dp[i - n]);
+                }
+            }
+
+            a = a / 10;
+        }
+    }
+    cout << dp[n];
+}
