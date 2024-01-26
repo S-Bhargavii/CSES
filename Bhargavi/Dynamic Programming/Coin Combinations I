@@ -1,0 +1,32 @@
+// coin combinations - I
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define ll long long
+#include <vector>
+int main()
+{
+    ll M = 1e9 + 7;
+    ll n, x;
+    cin >> n >> x;
+    vector<ll> coins;
+    for (ll i = 0; i < n; i++)
+    {
+        ll coin;
+        cin >> coin;
+        coins.push_back(coin);
+    }
+    vector<ll> dp(x + 1);
+    dp[0] = 1;
+    for (ll j = 1; j <= x; j++)
+    {
+        for (int k = 0; k < coins.size(); k++)
+        {
+            if (j - coins[k] >= 0)
+            {
+                dp[j] = (dp[j] + dp[j - coins[k]]) % M;
+            }
+        }
+    }
+    cout << dp[x];
+}
