@@ -1,0 +1,20 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define ll long long
+
+int main()
+{
+    ll n;
+    cin >> n;
+    int ans = 0;
+    // basically to solve this question, we need to
+    // solve the number of prime factors of 5
+    ll p = 5;
+    while (p <= n)
+    {
+        ans += n / p;
+        p *= 5;
+    }
+    cout << ans;
+}
